@@ -1,14 +1,15 @@
 pipeline {
   agent {
     docker {
-      image 'hello-world'
+      image 'java:oracle-java8'
     }
     
   }
   stages {
     stage('Init Pipeline') {
       steps {
-        sh 'echo Hello World'
+        sh '''echo Hello World
+java -version'''
       }
     }
   }
