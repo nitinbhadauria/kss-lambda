@@ -9,7 +9,9 @@ pipeline {
     stage('Init Pipeline') {
       steps {
         sh '''echo Hello World
-java -version'''
+java -version
+ls
+ls -R'''
       }
     }
   }
