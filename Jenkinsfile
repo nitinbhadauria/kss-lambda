@@ -1,18 +1,17 @@
 pipeline {
-  agent {
-    docker {
-      image 'java:8'
+    agent any
+
+    parameters {
+        string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+        // choices are newline separated
+        choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
     }
-    
-  }
-  stages {
-    stage('Init Pipeline') {
-      steps {
-        sh '''echo Hello World
-java -version
-ls
-ls -R'''
-      }
+
+    stages {
+        stage("foo") {
+            steps {
+		sh "echo ${params.region}"
+            }
+        }
     }
-  }
 }
